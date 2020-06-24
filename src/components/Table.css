@@ -4,4 +4,14 @@
     background-color: #477148;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+img {
+    height: 200px;
+}
+
+.playerOne, .playerTwo {
+    margin-top: 100px;
 }
