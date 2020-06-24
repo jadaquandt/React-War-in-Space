@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Table.css';
-import CardPlaceholder from './cards/1C.png';
+// import CardPlaceholder from 'cards/1C.png'
+// import Card from './Card';
 
 export class Table extends Component {
     render() {
@@ -8,16 +9,16 @@ export class Table extends Component {
             <div>
             <div className='table-top'>
                     <div className='playerOne'>
-                        <img src={CardPlaceholder} alt=""/>
+                        <img src='./cards/1C.png' alt=""/>
                         <div>Player One</div>
                         <div>Cards remaining:</div>
                         <button>Play Card</button>
                     </div>
                 <div className='playArea'>
-                                        
+
                 </div>
                     <div className='playerTwo'>
-                        <img src={CardPlaceholder} alt=""/>
+                        <img src="" alt=""/>
                         <div>Player Two</div>
                         <div>Cards remaining:</div>
                         <button>Play Card</button>

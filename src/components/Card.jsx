@@ -1,17 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+// import Deck from './Deck';
 
 export class Card extends Component {
-    constructor(point, suit) {
-        super(point, suit)
-        this.point = point;
-        this.suit = suit;
+    constructor(props) {
+        super(props);
+        this.point = props.point;
+        this.suit = props.suit;
     }
-
     render() {
+        let imgUrl = './cards/' + this.point + this.suit + '.png'
         return (
             <div>
                 <h1>This is a card</h1>
-                <button>Generate a card</button>
+                {/* <p>{this.point}{this.suit}</p> */}
+                <img src={imgUrl} alt=""/>
             </div>
         )
     }
