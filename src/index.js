@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import Card from './components/Card';
-import Table from './components/Table';
-import Deck from './components/Deck';
-// import Game from './components/Game';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 // import {BrowserRouter as Router} from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Table />
-    <Deck/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
