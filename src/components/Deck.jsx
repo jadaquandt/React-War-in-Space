@@ -6,37 +6,47 @@ export class Deck extends Component {
     constructor(props) {
         super(props);
 
-        let suits = ['C', 'D', 'H', 'S'];
-        let points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-
         this.state = {
             cards: [],
             playerOneCards: [],
             playerTwoCards: [],
         }
-        for(var i = 0; i < suits.length; i++) {
-            for(var j = 0; j < points.length; j++) {
-              var card = {point: points[j], suit: suits[i]};
-              this.state.cards.push(card);
-            }
-          }
-         console.log(this.state)
-//-----Shuffle the card Array------
-        this.state.cards.sort(() => Math.random() - 0.5);
-        this.state.playerOneCards = this.state.cards.slice(0, 26);
-        this.state.playerTwoCards = this.state.cards.slice(26, 52);
-        console.log(this.state)
     }
+//Function to deal game      
+    dealGame = () => {
+            let suits = ['C', 'D', 'H', 'S'];
+            let points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+            let newDeck = [];
+            let playerOneCards = [];
+            let playerTwoCards = [];
+//For loops to create new deck  
+            for(var i = 0; i < suits.length; i++) {
+                for(var j = 0; j < points.length; j++) {
+                  var card = {point: points[j], suit: suits[i]};
+                  newDeck.push(card);
+                }
+              }
+//Shuffle Deck array using sort
+        newDeck.sort(() => Math.random() - 0.5);
+//Deal Cards to players, half a deck array each:
+        playerOneCards = newDeck.slice(0, 26);
+        playerTwoCards = newDeck.slice(26, 52);
+//Set the state with the new array info
+        this.setState({ 
+            cards: newDeck,
+            playerOneCards: playerOneCards,
+            playerTwoCards: playerTwoCards
+            });
+        }
+
     render() {
         // console.log(this.state)
         const playerOneDeck = this.state.playerOneCards.map((card, index) => {
             return <Card key={index} {...card} />
         })
-        // const playerTwoDeck = this.state.playerTwoCards.map((card, index) => {
-        //     return <Card key={index} {...card} />
-        // })
         return (
             <div>
+                <button onClick={this.dealGame}>Start New Game</button>
                 {playerOneDeck.shift()}
                 {/* {playerTwoDeck.shift()} */}
                {/* {cardArray.shift()}

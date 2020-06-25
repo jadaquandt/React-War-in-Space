@@ -4,13 +4,12 @@ import './index.css';
 // import Card from './components/Card';
 import Table from './components/Table';
 import Deck from './components/Deck';
-import Game from './components/Game';
+// import Game from './components/Game';
 import * as serviceWorker from './serviceWorker';
 // import {BrowserRouter as Router} from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Game />
     <Table />
     <Deck/>
   </React.StrictMode>,
