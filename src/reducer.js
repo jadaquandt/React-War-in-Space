@@ -5,8 +5,6 @@ const initialState = {
     cards: newDeck,
     newGame: false,
     description: "",
-    playerOneCards: [],
-    playerTwoCards: []
 }
 
 export default function reducer (state = initialState, action) {
@@ -15,16 +13,17 @@ export default function reducer (state = initialState, action) {
             return {
                 cards: state.cards,
                 newGame: true,
-                description: "game is loaded"
+                description: "game is loaded", 
+                playerOneCards: [state.cards.slice(0, 26)],
+                playerTwoCards: [state.cards.slice(26, 52)]
             };
         case "DEAL_PLAYERS":
             
-            return [
-                ...state,
-            // {
-            //    player
-            // }
-        ];
+            return {
+                playerOneCards: state.playerOneCards,
+                description: "player one"
+
+            };
         default: return state;
     }
 }
@@ -43,8 +42,6 @@ function dealGame() {
       }
 //Shuffle Deck array using sort
     newDeck.sort(() => Math.random() - 0.5);
-
+    
 return newDeck;
-// //Set the state with the new array info
-// this.setState({ cards: newDeck });
 }
