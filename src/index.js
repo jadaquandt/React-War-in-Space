@@ -3,17 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import store from './store';
+import { startGame } from './actions';
 
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
-// import reducer from './redux/reducers';
-// const store = createStore(reducer)
+store.subscribe(() => {
+  console.log("Store changed!", store.getState())
+})
+
+store.dispatch(startGame("game is started"));
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
+    <Provider store={store}>
     <App />
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

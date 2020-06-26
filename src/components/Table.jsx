@@ -35,6 +35,7 @@ export class Table extends Component {
             <div>
             <div className='table-top'>
                     <div className='playerOne'>
+                        <div id='playerOneCard'></div>
                         <div>Player One</div>
                         <div>Cards remaining:</div>
                         <button onClick={this.playerOnePlay}>Play Card</button>
@@ -43,6 +44,7 @@ export class Table extends Component {
 
                 </div>
                     <div className='playerTwo'>
+                        <div id='playerTwoCard'></div>
                         <div>Player Two</div>
                         <div>Cards remaining:</div>
                         <button onClick={this.playerTwoPlay}>Play Card</button>

@@ -36,7 +36,7 @@ export class Game extends Component {
             else {
                 playerTwoCards.push(card)
             }
-        })
+        });
 //Set the state with the new array info
         this.setState({ 
             cards: newDeck,
@@ -44,9 +44,9 @@ export class Game extends Component {
             playerTwoCards: playerTwoCards
             });
         }
-    makeWar = () => {
-
-    }
+    // makeWar = () => {
+    //     const war = card + 4;
+    // }
     render() {
         // console.log(this.state)
         const playerOneDeck = this.state.playerOneCards.map((card, index) => {
