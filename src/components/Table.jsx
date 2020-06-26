@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import './Table.css';
 // import Deck from './Deck';
-import Card from './Card';
+// import Card from './Card';
 
 export class Table extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            playerOneCards: [
-                {point: 6, suit: "H"},
-                {point: 6, suit: "H"},
-                {point: 6, suit: "H"},
-                {point: 6, suit: "H"},
-                {point: 6, suit: "H"}
-            ]
-        }
+
     }
 
     playerOnePlay = (e) => {

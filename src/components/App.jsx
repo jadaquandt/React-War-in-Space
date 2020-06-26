@@ -2,7 +2,6 @@ import React from 'react';
 import Table from './Table';
 import Game from './Game';
 
-
 import {
   BrowserRouter as Router,
 //   Route,
@@ -14,7 +13,7 @@ const App = () => (
   <Router>
     {/* <Redirect from='/' to='/home' /> */}
     <Table />
-    <Game/>
+    <Game />
         {/* <Route exact path="/home" />
         <Route path="/home/game" component={Game} /> */}
   </Router>

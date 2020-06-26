@@ -1,2 +1,0 @@
-const START_GAME = "START_GAME";
-const PLAY_CARD = "PLAY_CARD";

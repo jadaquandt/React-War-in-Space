@@ -5,13 +5,12 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './store';
-import { startGame } from './actions';
 
 store.subscribe(() => {
   console.log("Store changed!", store.getState())
 })
 
-store.dispatch(startGame("game is started"));
+store.dispatch({ type: "START_GAME" })
 
 ReactDOM.render(
   <React.StrictMode>
