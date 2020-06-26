@@ -1,12 +1,13 @@
-import { Provider } from 'react-redux';
-
 const START_GAME = 'START_GAME';
-const initialState =
+const initialState = {
+    cards: [],
+    playerOneCards: [],
+    playerTwoCards: [],
+}
 
 function startGame(){
     return{
         type: START_GAME,
-        info: 'First redux action'
     }
 }
 
@@ -20,5 +21,3 @@ const reducer = (state = initialState, action) => {
         default: return state
     }
 }
-
-const store = createStore(reducer);

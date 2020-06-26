@@ -28,8 +28,15 @@ export class Game extends Component {
 //Shuffle Deck array using sort
         newDeck.sort(() => Math.random() - 0.5);
 //Deal Cards to players, half a deck array each:
-        playerOneCards = newDeck.slice(0, 26);
-        playerTwoCards = newDeck.slice(26, 52);
+        newDeck.forEach((card, index) => {
+            if (index <= 25){
+                playerOneCards.push(card)
+                console.log(index)
+            }
+            else {
+                playerTwoCards.push(card)
+            }
+        })
 //Set the state with the new array info
         this.setState({ 
             cards: newDeck,
@@ -37,6 +44,9 @@ export class Game extends Component {
             playerTwoCards: playerTwoCards
             });
         }
+    makeWar = () => {
+
+    }
     render() {
         // console.log(this.state)
         const playerOneDeck = this.state.playerOneCards.map((card, index) => {
@@ -46,10 +56,6 @@ export class Game extends Component {
             <div>
                 <button onClick={this.dealGame}>Start New Game</button>
                 {playerOneDeck}
-                {/* {playerTwoDeck.shift()} */}
-               {/* {cardArray.shift()}
-               {cardArray.shift()}
-               {cardArray.length} */}
             </div>
         )
     }

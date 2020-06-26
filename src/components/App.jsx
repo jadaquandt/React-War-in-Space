@@ -5,8 +5,8 @@ import Game from './Game';
 
 import {
   BrowserRouter as Router,
-  Route,
-  Redirect,
+//   Route,
+//   Redirect,
 } from 'react-router-dom';
 
 
