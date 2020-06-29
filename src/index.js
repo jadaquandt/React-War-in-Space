@@ -11,6 +11,7 @@ store.subscribe(() => {
 })
 
 store.dispatch({ type: "START_GAME" })
+store.dispatch({ type: "PLAY_CARD" })
 
 ReactDOM.render(
   <React.StrictMode>
