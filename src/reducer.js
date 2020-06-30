@@ -7,27 +7,35 @@ const initialState = {
     gameOver: false,
     playerOneCards: [],
     playerTwoCards: [],
+    p1Card: null,
+    p2Card: null,
     description: "",
 }
 
 export default function reducer (state = initialState, action) {
     switch (action.type) {
+        case "SETUP":
+            return {
+                ...state,
+                description: "Game will begin shortly"
+            };
         case "START_GAME":
+            let playerOne = [state.cards.slice(0, 26)];
+            let playerTwo = [state.cards.slice(26, 52)];
             return {
                 ...state,
                 cards: state.cards,
                 newGame: true,
-                description: "game is loaded", 
+                playerOneCards: playerOne,
+                playerTwoCards: playerTwo,
+                description: "game is loaded",
             };
         case "PLAY_CARD":
-            
             return {
                 ...state,
-                description: "player one",
-                playerOneCards: [state.cards.slice(0, 26)],
-                playerTwoCards: [state.cards.slice(26, 52)] 
-
+                description: "DISPATCH IS WORKING",
             };
+        
         default: return state;
     }
 }
@@ -46,6 +54,10 @@ function dealGame() {
       }
 //Shuffle Deck array using sort
     newDeck.sort(() => Math.random() - 0.5);
+//Giving it an id to help with the map function later
+newDeck.forEach((item, i) => {
+    item.id = i + 1;
+})
     
 return newDeck;
 }

@@ -10,8 +10,9 @@ store.subscribe(() => {
   console.log("Store changed!", store.getState())
 })
 
-store.dispatch({ type: "START_GAME" })
-store.dispatch({ type: "PLAY_CARD" })
+store.dispatch({ type: "SETUP" })
+// store.dispatch({ type: "START_GAME" })
+// store.dispatch({ type: "PLAY_CARD" })
 
 ReactDOM.render(
   <React.StrictMode>

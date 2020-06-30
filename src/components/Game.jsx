@@ -104,15 +104,7 @@ export class Game extends Component {
             playerTwo: playerTwo,
         })
         
-        let tempCards = p2Removed.slice()
-        let removedP2CardsString = tempCards.map((card) => {
-            if(card.point !== undefined){
-                return card.point + ' of ' + card.suit
-            } else {
-                return card.point + ' of ' + card.suit
-            }
-        }).join(', ')
-        alert('Player One won the war and got these cards: ' + removedP2CardsString)
+        alert('Player One won the war')
     } 
 else if (winner === 'Player Two') {
         let p1Removed = [];
@@ -142,28 +134,64 @@ else if (winner === 'Player Two') {
             playerOne: playerOne,
             playerTwo: playerTwo,
         })
-
-        let tempCards = p1Removed.slice()
-        let removedP1CardsString = tempCards.map((card) => {
-            if(card.point !== undefined){
-                return card.point + ' of ' + card.suit
-            } else {
-                return card.point + ' of ' + card.suit
-            }
-        }).join(', ')
-        alert('Player Two won the war and got these cards: ' + removedP1CardsString)
+        alert('Player Two won the war')
     } 
 };
+
+ //when user clicks next hand
+    //determines winner of previous hand and pushes cards to respective winner
+    playGame(p1Card, p2Card) {
+        let winner = '';
+        let playerOne = this.state.playerOne.slice()
+        let playerTwo = this.state.playerTwo.slice()
+        
+        if (p1Card.value < p2Card.value) {
+            winner = 'Player Two';
+        } else if (p1Card.value > p2Card.value) {
+            winner = 'Player One';
+        } else {
+            this.makeWar(0)
+        }
+        if (winner === 'Player One') {
+            var p2Removed = playerTwo.shift();
+            var p1Removed = playerOne.shift();
+            playerOne.push(p2Removed)
+            playerTwo.push(p1Removed)
+            this.setState({
+                playerOne: playerOne,
+                playerTwo: playerTwo
+            })
+        } else if (winner === 'Player Two') {
+            var p1Removed = playerOne.shift();
+            var p2Removed = playerTwo.shift();
+            playerTwo.push(p1Removed)
+            playerOne.push(p2Removed)
+            this.setState({
+                playerOne: playerOne,
+                playerTwo: playerTwo
+            })
+        }
+    }
+
     render() {
-        console.log(this.state.playerOne)
-        console.log(this.state.playerTwo)
+        // console.log(this.state.playerOne)
+        // console.log(this.state.playerTwo)
         if (this.state.playerOne.length === 0) {
             return (
-                <div style={{ alignItems: 'center' }}>
+                <div>
                     <Alert message={'Player One lost'} type="error" />
                 </div>
             )
         }
+        if (this.state.playerTwo.length === 0) {
+            return (
+                <div>
+                    <Alert message={'Player Two lost'} type="error" />
+                </div>
+            )
+        }
+        let p1Card = this.state.playerOne[0]
+        let p2Card = this.state.playerTwo[0]
         return (
             <div>
                 
@@ -185,218 +213,12 @@ function dealGame() {
       }
 //Shuffle Deck array using sort
     newDeck.sort(() => Math.random() - 0.5);
-    
+//Giving it an id to help with the map function later
+    newDeck.forEach((item, i) => {
+        item.id = i + 1;
+    })
+
 return newDeck;
 }
-
-// const cardArray = [
-//     { suit: "h",
-//         point: 2
-//     },
-//     {
-//         suit: "h",
-//         point: 3
-//     },
-//     {
-//         suit: "h",
-//         point: 4
-//     },
-//     {
-//         suit: "h",
-//         point: 5
-//     },
-//     {
-//         suit: "h",
-//         point: 6
-//     },
-//     {
-//         suit: "h",
-//         point: 7
-//     },
-//     {
-//         suit: "h",
-//         point: 8
-//     },
-//     {
-//         suit: "h",
-//         point: 9
-//     },
-//     {
-//         suit: "h",
-//         point: 10
-//     },
-//     {
-//         suit: "h",
-//         point: 11
-//     },
-//     {
-//         suit: "h",
-//         point: 12
-//     },
-//     {
-//         suit: "h",
-//         point: 13
-//     },
-//     {
-//         suit: "h",
-//         point: 1
-//     },
-//     {
-//         suit: "d",
-//         point: 2
-//     },
-//     {
-//         suit: "d",
-//         point: 3
-//     },
-//     {
-//         suit: "d",
-//         point: 4
-//     },
-//     {
-//         suit: "d",
-//         point: 5
-//     },
-//     {
-//         suit: "d",
-//         point: 6
-//     },
-//     {
-//         suit: "d",
-//         point: 7
-//     },
-//     {
-//         suit: "d",
-//         point: 8
-//     },
-//     {
-//         suit: "d",
-//         point: 9
-//     },
-//     {
-//         suit: "d",
-//         point: 10
-//     },
-//     {
-//         suit: "d",
-//         point: 11
-//     },
-//     {
-//         suit: "d",
-//         point: 12
-//     },
-//     {
-//         suit: "d",
-//         point: 13
-//     },
-//     {
-//         suit: "d",
-//         point: 1
-//     },
-//     {
-//         suit: "c",
-//         point: 2
-//     },
-//     {
-//         suit: "c",
-//         point: 3
-//     },
-//     {
-//         suit: "c",
-//         point: 4
-//     },
-//     {
-//         suit: "c",
-//         point: 5
-//     },
-//     {
-//         suit: "c",
-//         point: 6
-//     },
-//     {
-//         suit: "c",
-//         point: 7
-//     },
-//     {
-//         suit: "c",
-//         point: 8
-//     },
-//     {
-//         suit: "c",
-//         point: 9
-//     },
-//     {
-//         suit: "c",
-//         point: 10
-//     },
-//     {
-//         suit: "c",
-//         point: 11
-//     },
-//     {
-//         suit: "c",
-//         point: 12
-//     },
-//     {
-//         suit: "c",
-//         point: 13
-//     },
-//     {
-//         suit: "c",
-//         point: 1
-
-//     },
-//     {
-//         suit: "s",
-//         point: 2
-//     },
-//     {
-//         suit: "s",
-//         point: 3
-//     },
-//     {
-//         suit: "s",
-//         point: 4
-//     },
-//     {
-//         suit: "s",
-//         point: 5
-//     },
-//     {
-//         suit: "s",
-//         point: 6
-//     },
-//     {
-//         suit: "s",
-//         point: 7
-//     },
-//     {
-//         suit: "s",
-//         point: 8
-//     },
-//     {
-//         suit: "s",
-//         point: 9
-//     },
-//     {
-//         suit: "s",
-//         point: 10
-//     },
-//     {
-//         suit: "s",
-//         point: 11
-//     },
-//     {
-//         suit: "s",
-//         point: 12
-//     },
-//     {
-//         suit: "S",
-//         point: 13,
-//     },
-//     {
-//         suit: "S",
-//         point: 1,
-//     }];
 
 export default Game;
