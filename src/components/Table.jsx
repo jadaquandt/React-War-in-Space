@@ -2,34 +2,42 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Table.css'; 
 import Card from './Card';
+// import Instructions from './Instructions';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 
-
-// const startGame = () => ({ type: 'START_GAME' });
-// const playCard = () => ({ type: 'PLAY_CARD' });
 
 export class Table extends Component {
 
-    playerOnePlay = (e) => {
-        // e.preventDefault();
-        // let playerOneDeck = this.props.playerOneCards.shift();
-        console.log("playerOneDeck");
-        // playerOneDeck.shift();
-    }
-
     playerTwoPlay = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log('The link was clicked for Player Two.');
+        console.log(e);
     }
 
-    howToPlay = (e) => {
-        e.preventDefault();
-        console.log('The link was clicked for Instructions');
-        //return (<div> <Instructions /> </div>)
+    playerOnePlay = (e) => {
+        let playerOne = this.props.playerOneCards.shift()
+        let p1 = document.getElementById('playerOneCard');
+        // console.log(e)
+        // let playerOneDeck = this.props.playerOneCards.shift();
+        // playerOneDeck.shift();
+        console.log(playerOne)
+        let p1Card = playerOne.shift();
+        console.log(p1Card)
+        // return <Card key={this.p1Card.id}/>
+        // let playerOneDeck = e.map((card) => {
+        //         return p1Card.innerHTML = <div><Card key={this.props.playerOneCards.index} {...card.shift()} /> </div>
+        //     })
+        // let playerOneDeck = e.map((card) => {
+        //         return <Card key={this.props.playerOneCards.index} {...card.shift()} />
+        //     })
+        // console.log(playerOneDeck)
+        return p1.innerHTML = <div><Card props={p1Card}/></div>
     }
-    
+
     render() {
+        let playerOne = this.props.playerOneCards;
+        let playerTwo = this.props.playerOneCards;
         // const playerOne = this.props.deck;
         // console.log(playerOne.shift())
         // let playerOneDeck = this.props.playerOneCards.map((card) => {
@@ -38,15 +46,15 @@ export class Table extends Component {
         // let playerTwoDeck = this.props.playerTwoCards.map((card) => {
         //     return <div><Card key={this.props.playerOneCards.index} {...card.shift()} /> </div>
         // });
-
+//App beginning
         if (this.props.newGame === false) {
             return(
                 <div style= {{textAlign: 'center'}}>
-                <Typography>Want to play War?</Typography>
+                <h1>Want to play War?</h1>
                 <Button onClick={this.props.startGame} variant="contained" color="primary">START A NEW GAME</Button>
-                <Button onClick={this.howToPlay} variant="contained" color="secondary">HOW TO PLAY</Button>
                 </div>
             )
+//Once user clicks "New Game" button
         } else if (this.props.newGame === true){
             return(
                 <div style= {{textAlign: 'center'}}>
@@ -55,7 +63,7 @@ export class Table extends Component {
                     <div id='playerOneCard'>PLAYER ONE CARD GOES HERE</div>
                         <div>Player One</div>
                         <div>Cards remaining: {this.props.playerOneCards[0].length}</div>
-                        <Button onClick={this.playerOnePlay} variant="contained" color="primary">
+                        <Button onClick={() => {this.playerOnePlay(playerOne)}} variant="contained" color="primary">
                         Play Card
                         </Button>
                     </div>
@@ -66,39 +74,17 @@ export class Table extends Component {
                         <div id='playerTwoCard'>PLAYER TWO CARD GOES HERE</div>
                         <div>Player Two</div>
                         <div>Cards remaining: {this.props.playerTwoCards[0].length}</div>
-                        <Button onClick={this.props.playCard} variant="contained" color="primary">
+                        <Button onClick={() => {this.playerTwoPlay(playerTwo)}} variant="contained" color="primary">
                         Play Card
                         </Button>
                     </div>
             </div >
-            <Button onClick={this.howToPlay} variant="contained" color="primary">HOW TO PLAY</Button>
             </div>
             )
         } 
         return (
             <div style= {{textAlign: 'center'}}>
-            <div className='table-top'>
-                    <div className='playerOne'>
-                    <div id='playerOneCard'>PLAYER ONE CARD GOES HERE</div>
-                        <div>Player One</div>
-                        <div>Cards remaining: {this.props.playerOneCards[0].length}</div>
-                        <Button onClick={this.playerOnePlay} variant="contained" color="primary">
-                        Play Card
-                        </Button>
-                    </div>
-                <div className='playArea'>
-
-                </div>
-                    <div className='playerTwo'>
-                        <div id='playerTwoCard'>PLAYER TWO CARD GOES HERE</div>
-                        <div>Player Two</div>
-                        <div>Cards remaining: {this.props.playerTwoCards[0].length}</div>
-                        <Button onClick={this.props.playCard} variant="contained" color="primary">
-                        Play Card
-                        </Button>
-                    </div>
-            </div >
-            <Button onClick={this.howToPlay} variant="contained" color="primary">HOW TO PLAY</Button>
+            <p>This is the last else condition</p>
             </div>
         )
     }
@@ -118,6 +104,7 @@ const mapDispatchToProps = (dispatch) => {
         setUp: () => {dispatch({type: 'SETUP'})},
         startGame: () => {dispatch({type: 'START_GAME'})},
         playCard: () => {dispatch({type: 'PLAY_CARD'})},
+        howToPlay: () => {dispatch({type: 'GAME_INSTRUCTIONS'})},
         dispatch
     }
 }

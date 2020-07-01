@@ -7,8 +7,8 @@ const initialState = {
     gameOver: false,
     playerOneCards: [],
     playerTwoCards: [],
-    p1Card: null,
-    p2Card: null,
+    getInstructions: false,
+    war: false,
     description: "",
 }
 
@@ -31,11 +31,16 @@ export default function reducer (state = initialState, action) {
                 description: "game is loaded",
             };
         case "PLAY_CARD":
+            
             return {
                 ...state,
                 description: "DISPATCH IS WORKING",
             };
-        
+        case "GAME_INSTRUCTIONS":
+            return {
+                ...state,
+                getInstructions: true,
+            };
         default: return state;
     }
 }

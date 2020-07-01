@@ -174,8 +174,6 @@ else if (winner === 'Player Two') {
     }
 
     render() {
-        // console.log(this.state.playerOne)
-        // console.log(this.state.playerTwo)
         if (this.state.playerOne.length === 0) {
             return (
                 <div>
@@ -190,8 +188,8 @@ else if (winner === 'Player Two') {
                 </div>
             )
         }
-        let p1Card = this.state.playerOne[0]
-        let p2Card = this.state.playerTwo[0]
+        // let p1Card = this.state.playerOne[0]
+        // let p2Card = this.state.playerTwo[0]
         return (
             <div>
                 
