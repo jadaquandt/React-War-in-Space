@@ -140,38 +140,38 @@ else if (winner === 'Player Two') {
 
  //when user clicks next hand
     //determines winner of previous hand and pushes cards to respective winner
-    playGame(p1Card, p2Card) {
-        let winner = '';
-        let playerOne = this.state.playerOne.slice()
-        let playerTwo = this.state.playerTwo.slice()
+    // playGame(p1Card, p2Card) {
+    //     let winner = '';
+    //     let playerOne = this.state.playerOne.slice()
+    //     let playerTwo = this.state.playerTwo.slice()
         
-        if (p1Card.value < p2Card.value) {
-            winner = 'Player Two';
-        } else if (p1Card.value > p2Card.value) {
-            winner = 'Player One';
-        } else {
-            this.makeWar(0)
-        }
-        if (winner === 'Player One') {
-            var p2Removed = playerTwo.shift();
-            var p1Removed = playerOne.shift();
-            playerOne.push(p2Removed)
-            playerTwo.push(p1Removed)
-            this.setState({
-                playerOne: playerOne,
-                playerTwo: playerTwo
-            })
-        } else if (winner === 'Player Two') {
-            var p1Removed = playerOne.shift();
-            var p2Removed = playerTwo.shift();
-            playerTwo.push(p1Removed)
-            playerOne.push(p2Removed)
-            this.setState({
-                playerOne: playerOne,
-                playerTwo: playerTwo
-            })
-        }
-    }
+    //     if (p1Card.value < p2Card.value) {
+    //         winner = 'Player Two';
+    //     } else if (p1Card.value > p2Card.value) {
+    //         winner = 'Player One';
+    //     } else {
+    //         this.makeWar(0)
+    //     }
+    //     if (winner === 'Player One') {
+    //         var p2Removed = playerTwo.shift();
+    //         var p1Removed = playerOne.shift();
+    //         playerOne.push(p2Removed)
+    //         playerTwo.push(p1Removed)
+    //         this.setState({
+    //             playerOne: playerOne,
+    //             playerTwo: playerTwo
+    //         })
+    //     } else if (winner === 'Player Two') {
+    //         var p1Removed = playerOne.shift();
+    //         var p2Removed = playerTwo.shift();
+    //         playerTwo.push(p1Removed)
+    //         playerOne.push(p2Removed)
+    //         this.setState({
+    //             playerOne: playerOne,
+    //             playerTwo: playerTwo
+    //         })
+    //     }
+    // }
 
     render() {
         if (this.state.playerOne.length === 0) {

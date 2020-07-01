@@ -7,75 +7,7 @@ import Button from '@material-ui/core/Button';
 // import Typography from '@material-ui/core/Typography';
  
 export class Table extends Component {
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         playerOneCards: [],
-    //         p2Deck: [],
-    //         p1Removed: [],
-    //         p2Removed: [],
-    //         war: false,
-    //         winner: ''
-    //     }
-    // }
-
-    // //Deals player hands
-    // componentDidMount(){
-    //     let playerOneCards = [];
-    //     let playerTwoCards = [];
-
-    //     this.props.cards.forEach((card, index) => {
-    //         if (index <= 25){
-    //             playerOneCards.push(card)
-    //             // console.log(index)
-    //         }
-    //         else {
-    //             playerTwoCards.push(card)
-    //         }
-    //     });
-
-    //     this.setState({
-    //         playerOneCards: playerOneCards,
-    //         playerTwoCards: playerTwoCards,
-    //     })
-    // }
-
-    // playerTwoPlay = (e) => {
-    //     let p2 = document.getElementById('playerTwoCard');
-    //     let p2Card = this.state.p2Deck.shift();
-    //     console.log(p2Card)
-
-    //     this.setState({
-    //         p2Deck: this.state.p2Deck,
-    //     })
-    //     return p2.innerHTML = <Card props={p2Card}/>
-    // }
-
-    // playRound = () => {
-    //     let winner = '';
-    //     // let p1Card = this.state.p1Deck.shift().point;
-    //     // let p2Card = this.state.p2Deck.shift().point;
-    //     let p1Card = this.props.p1Deck.shift().point;
-    //     let p2Card = this.props.p2Deck.shift().point;
-
-    //     if (p1Card < p2Card){
-    //         winner = 'Player Two'
-    //     }
-    //     else if (p1Card > p2Card) {
-    //         winner = 'Player One'
-    //     } else if (p1Card === p2Card) {
-    //         winner = "no one"
-    //     }
-    //     console.log(winner)
-    //     // this.setState({
-    //     //     p1Deck: this.state.p1Deck,
-    //     //     p2Deck: this.state.p2Deck,
-    //     //     winner: this.winner
-    //     // })
-
-    //     // console.log(this.state)
-    // }
-    
+   
     render() {
         // console.log(this.state.p1Deck);
         // let playerOneDeck = this.props.p1Deck.map((card) => {

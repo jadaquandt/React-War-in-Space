@@ -31,27 +31,29 @@ export default function reducer (state = initialState, action) {
                 description: "game is loaded",
             };
         case "PLAY_CARD":
+    //when user clicks play round button
+    //determines winner of hand and pushes cards to respective winner
             let winner = '';
             let war = '';
             let p1Card = state.p1Deck.shift();
             let p2Card = state.p2Deck.shift();
             let p1Deck = state.p1Deck;
             let p2Deck = state.p2Deck;
-            let p1Removed = [];
-            let p2Removed = [];
+            let p1LostCards = [];
+            let p2LostCards = [];
             
             if (p1Card.point < p2Card.point){
                 winner = 'Player Two';
-                p1Removed = p1Card;
-                p2Deck.push(p1Removed)
+                p2Deck.push(p1Card);
+                p2Deck.push(p2Card)
             }
             else if (p1Card.point > p2Card.point) {
                 winner = 'Player One';
-                p2Removed = p2Card;
-                p1Deck.push(p2Removed)
+                p1Deck.push(p1Card);
+                p1Deck.push(p2Card);
             } else if (p1Card.point === p2Card.point) {
-                winner = "tie"
-                war = true
+                winner = "tie";
+                war = true;
             }
             
             return {
@@ -59,8 +61,8 @@ export default function reducer (state = initialState, action) {
                 description: "CARDS HAVE BEEN PLAYED",
                 p1Deck: p1Deck,
                 p2Deck: p2Deck,
-                p1Removed: p1Removed,
-                p2Removed: p2Removed,
+                p1LostCards: p1LostCards,
+                p2LostCards: p2LostCards,
                 winner: winner,
                 war: war,
             };
@@ -72,6 +74,101 @@ export default function reducer (state = initialState, action) {
         default: return state;
     }
 }
+
+function makeWar(card){
+    let war = card + 4;
+    let winner = '';
+    let playerOne = this.state.playerOne.slice();
+    let playerTwo = this.state.playerTwo.slice();
+    let p1Point = '';
+    let p2Point = '';
+
+    //Gets points from player cards to compare
+    if(playerOne[war] === undefined){
+        p1Point = playerOne[playerOne.length -1].point;
+        p2Point = playerTwo[war].point;
+    } else if (playerTwo[war] === undefined) {
+        p2Point = playerTwo[playerTwo.length -1].point;
+        p1Point = playerOne[war].point;
+    } else {
+        p1Point = playerOne[war].point;
+        p2Point = playerTwo[war].point;
+    }
+    //Determines winner of war, or if the cards happen to be the same,
+    //Runs function again
+    if (p1Point > p2Point){
+        winner = 'Player One'
+    } else if (p1Point < p2Point) {
+        winner = 'PlayerTwo'
+    } else {
+        this.makeWar(war)
+    }
+//Gets remaining hand for players
+if (winner === 'Player One'){
+        let p1Removed = [];
+        let p2Removed = [];
+    //If P1 wins war, then she gets P2 cards
+    if (playerTwo.length < war) {
+        p2Removed = playerTwo.slice();
+        playerTwo = [];
+        for (let i = 0; i < war +1; i++){
+            p1Removed[i] = playerOne.shift()
+        }
+    //If player two wins
+    } else if (playerOne.length < war) {
+        p1Removed = playerOne.slice();
+        playerOne = [];
+        for (let i = 0; i < war +1; i++){
+            p2Removed[i] = playerTwo.shift()
+        }
+    } else {
+        for (let i = 0; i < war + 1; i++) {
+            p1Removed[i] = playerOne.shift()
+            p2Removed[i] = playerTwo.shift()
+        }
+    }
+    playerOne.push(...p2Removed);
+    playerTwo.push(...p1Removed);
+
+    this.setState ({
+        playerOne: playerOne,
+        playerTwo: playerTwo,
+    })
+    
+    alert('Player One won the war')
+} 
+else if (winner === 'Player Two') {
+    let p1Removed = [];
+    let p2Removed = [];
+    if (playerTwo.length < war){
+        p2Removed = playerTwo.slice();
+        playerTwo = [];
+        for (let i = 0; i < war +1; i++){
+            p1Removed[i] = playerOne.shift()
+        }
+    } else if (playerOne.length < war) {
+        p1Removed = playerOne.slice();
+        playerOne = []
+        for (let i = 0; i < war + 1; i++) {
+            p2Removed[i] = playerOne.shift()
+        }
+    } else {
+        for (let i = 0; i < war + 1; i++) {
+            p1Removed[i] = playerOne.shift()
+            p2Removed[i] = playerTwo.shift()
+        }
+}
+    playerOne.push(...p2Removed);
+    playerTwo.push(...p1Removed);
+
+    this.setState ({
+        playerOne: playerOne,
+        playerTwo: playerTwo,
+    })
+    alert('Player Two won the war')
+} 
+};
+
 
 //Function to get a new deck of cards for our state
 function dealGame() {
