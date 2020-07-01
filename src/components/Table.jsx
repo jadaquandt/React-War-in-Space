@@ -1,50 +1,88 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Table.css'; 
-import Card from './Card';
+// import Card from './Card';
 // import Instructions from './Instructions';
 import Button from '@material-ui/core/Button';
 // import Typography from '@material-ui/core/Typography';
-
-
+ 
 export class Table extends Component {
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         playerOneCards: [],
+    //         p2Deck: [],
+    //         p1Removed: [],
+    //         p2Removed: [],
+    //         war: false,
+    //         winner: ''
+    //     }
+    // }
 
-    playerTwoPlay = (e) => {
-        // e.preventDefault();
-        console.log('The link was clicked for Player Two.');
-        console.log(e);
-    }
+    // //Deals player hands
+    // componentDidMount(){
+    //     let playerOneCards = [];
+    //     let playerTwoCards = [];
 
-    playerOnePlay = (e) => {
-        let playerOne = this.props.playerOneCards.shift()
-        let p1 = document.getElementById('playerOneCard');
-        // console.log(e)
-        // let playerOneDeck = this.props.playerOneCards.shift();
-        // playerOneDeck.shift();
-        console.log(playerOne)
-        let p1Card = playerOne.shift();
-        console.log(p1Card)
-        // return <Card key={this.p1Card.id}/>
-        // let playerOneDeck = e.map((card) => {
-        //         return p1Card.innerHTML = <div><Card key={this.props.playerOneCards.index} {...card.shift()} /> </div>
-        //     })
-        // let playerOneDeck = e.map((card) => {
-        //         return <Card key={this.props.playerOneCards.index} {...card.shift()} />
-        //     })
-        // console.log(playerOneDeck)
-        return p1.innerHTML = <div><Card props={p1Card}/></div>
-    }
+    //     this.props.cards.forEach((card, index) => {
+    //         if (index <= 25){
+    //             playerOneCards.push(card)
+    //             // console.log(index)
+    //         }
+    //         else {
+    //             playerTwoCards.push(card)
+    //         }
+    //     });
 
+    //     this.setState({
+    //         playerOneCards: playerOneCards,
+    //         playerTwoCards: playerTwoCards,
+    //     })
+    // }
+
+    // playerTwoPlay = (e) => {
+    //     let p2 = document.getElementById('playerTwoCard');
+    //     let p2Card = this.state.p2Deck.shift();
+    //     console.log(p2Card)
+
+    //     this.setState({
+    //         p2Deck: this.state.p2Deck,
+    //     })
+    //     return p2.innerHTML = <Card props={p2Card}/>
+    // }
+
+    // playRound = () => {
+    //     let winner = '';
+    //     // let p1Card = this.state.p1Deck.shift().point;
+    //     // let p2Card = this.state.p2Deck.shift().point;
+    //     let p1Card = this.props.p1Deck.shift().point;
+    //     let p2Card = this.props.p2Deck.shift().point;
+
+    //     if (p1Card < p2Card){
+    //         winner = 'Player Two'
+    //     }
+    //     else if (p1Card > p2Card) {
+    //         winner = 'Player One'
+    //     } else if (p1Card === p2Card) {
+    //         winner = "no one"
+    //     }
+    //     console.log(winner)
+    //     // this.setState({
+    //     //     p1Deck: this.state.p1Deck,
+    //     //     p2Deck: this.state.p2Deck,
+    //     //     winner: this.winner
+    //     // })
+
+    //     // console.log(this.state)
+    // }
+    
     render() {
-        let playerOne = this.props.playerOneCards;
-        let playerTwo = this.props.playerOneCards;
-        // const playerOne = this.props.deck;
-        // console.log(playerOne.shift())
-        // let playerOneDeck = this.props.playerOneCards.map((card) => {
-        //     return <div><Card key={this.props.playerOneCards.index} {...card.shift()} /> </div>
+        // console.log(this.state.p1Deck);
+        // let playerOneDeck = this.props.p1Deck.map((card) => {
+        //     return <div><Card key={this.props.p1Deck.index} {...card.shift()} /> </div>
         // })
-        // let playerTwoDeck = this.props.playerTwoCards.map((card) => {
-        //     return <div><Card key={this.props.playerOneCards.index} {...card.shift()} /> </div>
+        // let playerTwoDeck = this.props.p2Deck.map((card) => {
+        //     return <div><Card key={this.props.p1Deck.index} {...card.shift()} /> </div>
         // });
 //App beginning
         if (this.props.newGame === false) {
@@ -62,8 +100,9 @@ export class Table extends Component {
                     <div className='playerOne'>
                     <div id='playerOneCard'>PLAYER ONE CARD GOES HERE</div>
                         <div>Player One</div>
-                        <div>Cards remaining: {this.props.playerOneCards[0].length}</div>
-                        <Button onClick={() => {this.playerOnePlay(playerOne)}} variant="contained" color="primary">
+                        {/* <div>Cards remaining: {this.state.p1Deck.length}</div> */}
+                        <div>Cards remaining: {this.props.p1Deck.length}</div>
+                        <Button onClick={() => {this.props.playCard()}} variant="contained" color="primary">
                         Play Card
                         </Button>
                     </div>
@@ -73,15 +112,16 @@ export class Table extends Component {
                     <div className='playerTwo'>
                         <div id='playerTwoCard'>PLAYER TWO CARD GOES HERE</div>
                         <div>Player Two</div>
-                        <div>Cards remaining: {this.props.playerTwoCards[0].length}</div>
-                        <Button onClick={() => {this.playerTwoPlay(playerTwo)}} variant="contained" color="primary">
+                        {/* <div>Cards remaining: {this.state.p2Deck.length}</div> */}
+                        <div>Cards remaining: {this.props.p2Deck.length}</div>
+                        {/* <Button onClick={() => {this.playerTwoPlay()}} variant="contained" color="primary">
                         Play Card
-                        </Button>
+                        </Button> */}
                     </div>
             </div >
             </div>
             )
-        } 
+        }
         return (
             <div style= {{textAlign: 'center'}}>
             <p>This is the last else condition</p>
@@ -92,10 +132,7 @@ export class Table extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-        deck: state.cards,
-        playerOneCards: state.playerOneCards,
-        playerTwoCards: state.playerTwoCards,
-        newGame: state.newGame,
+        ...state,
      }
   };
 
@@ -105,7 +142,6 @@ const mapDispatchToProps = (dispatch) => {
         startGame: () => {dispatch({type: 'START_GAME'})},
         playCard: () => {dispatch({type: 'PLAY_CARD'})},
         howToPlay: () => {dispatch({type: 'GAME_INSTRUCTIONS'})},
-        dispatch
     }
 }
 

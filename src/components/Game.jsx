@@ -14,35 +14,35 @@ export class Game extends Component {
             gameOver: false,
         }
     }
-    componentDidMount(){
-        let cardArray = dealGame();
-        let playerOneCards = [];
-        let playerTwoCards = [];
-        let winner = '';
+    // componentDidMount(){
+    //     let cardArray = dealGame();
+    //     let playerOneCards = [];
+    //     let playerTwoCards = [];
+    //     let winner = '';
 
-        cardArray.forEach((card, index) => {
-            if (index <= 25){
-                playerOneCards.push(card)
-                // console.log(index)
-            }
-            else {
-                playerTwoCards.push(card)
-            }
-        });
+    //     cardArray.forEach((card, index) => {
+    //         if (index <= 25){
+    //             playerOneCards.push(card)
+    //             // console.log(index)
+    //         }
+    //         else {
+    //             playerTwoCards.push(card)
+    //         }
+    //     });
 
-        if (playerOneCards[0] < playerTwoCards[0]){
-            winner = 'Player Two'
-        }
-        else {
-            winner = 'Player One'
-        }
-        this.setState({
-            cards: cardArray,
-            playerOne: playerOneCards,
-            playerTwo: playerTwoCards,
-            winner: winner
-        })
-    }
+    //     if (playerOneCards[0] < playerTwoCards[0]){
+    //         winner = 'Player Two'
+    //     }
+    //     else {
+    //         winner = 'Player One'
+    //     }
+    //     this.setState({
+    //         cards: cardArray,
+    //         playerOne: playerOneCards,
+    //         playerTwo: playerTwoCards,
+    //         winner: winner
+    //     })
+    // }
 
     makeWar(card){
         let war = card + 4;

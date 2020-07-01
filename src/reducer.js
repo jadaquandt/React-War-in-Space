@@ -5,10 +5,10 @@ const initialState = {
     cards: newDeck,
     newGame: false,
     gameOver: false,
-    playerOneCards: [],
-    playerTwoCards: [],
+    winner: null,
+    p1Deck: [],
+    p2Deck: [],
     getInstructions: false,
-    war: false,
     description: "",
 }
 
@@ -20,21 +20,49 @@ export default function reducer (state = initialState, action) {
                 description: "Game will begin shortly"
             };
         case "START_GAME":
-            let playerOne = [state.cards.slice(0, 26)];
-            let playerTwo = [state.cards.slice(26, 52)];
+            let playerOne = state.cards.slice(0, 26);
+            let playerTwo = state.cards.slice(26, 52);
             return {
                 ...state,
                 cards: state.cards,
                 newGame: true,
-                playerOneCards: playerOne,
-                playerTwoCards: playerTwo,
+                p1Deck: playerOne,
+                p2Deck: playerTwo,
                 description: "game is loaded",
             };
         case "PLAY_CARD":
+            let winner = '';
+            let war = '';
+            let p1Card = state.p1Deck.shift();
+            let p2Card = state.p2Deck.shift();
+            let p1Deck = state.p1Deck;
+            let p2Deck = state.p2Deck;
+            let p1Removed = [];
+            let p2Removed = [];
+            
+            if (p1Card.point < p2Card.point){
+                winner = 'Player Two';
+                p1Removed = p1Card;
+                p2Deck.push(p1Removed)
+            }
+            else if (p1Card.point > p2Card.point) {
+                winner = 'Player One';
+                p2Removed = p2Card;
+                p1Deck.push(p2Removed)
+            } else if (p1Card.point === p2Card.point) {
+                winner = "tie"
+                war = true
+            }
             
             return {
                 ...state,
-                description: "DISPATCH IS WORKING",
+                description: "CARDS HAVE BEEN PLAYED",
+                p1Deck: p1Deck,
+                p2Deck: p2Deck,
+                p1Removed: p1Removed,
+                p2Removed: p2Removed,
+                winner: winner,
+                war: war,
             };
         case "GAME_INSTRUCTIONS":
             return {
@@ -65,4 +93,4 @@ newDeck.forEach((item, i) => {
 })
     
 return newDeck;
-}
+};
