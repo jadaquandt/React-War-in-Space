@@ -4,6 +4,7 @@ import './Table.css';
 // import Card from './Card';
 // import Instructions from './Instructions';
 import Button from '@material-ui/core/Button';
+import War from './War';
 // import Typography from '@material-ui/core/Typography';
  
 export class Table extends Component {
@@ -17,7 +18,7 @@ export class Table extends Component {
         //     return <div><Card key={this.props.p1Deck.index} {...card.shift()} /> </div>
         // });
 //App beginning
-        if (this.props.newGame === false) {
+        if (this.props.status === "Setup") {
             return(
                 <div style= {{textAlign: 'center'}}>
                 <h1>Want to play War?</h1>
@@ -25,7 +26,7 @@ export class Table extends Component {
                 </div>
             )
 //Once user clicks "New Game" button
-        } else if (this.props.newGame === true){
+        } else if (this.props.status === "New Game"){
             return(
                 <div style= {{textAlign: 'center'}}>
             <div className='table-top'>
@@ -52,6 +53,13 @@ export class Table extends Component {
                     </div>
             </div >
             </div>
+            )
+        } else if(this.props.status === "War"){
+            return(
+                <div>
+                    <War />
+                    <h1>Time for war!</h1>
+                </div>
             )
         }
         return (

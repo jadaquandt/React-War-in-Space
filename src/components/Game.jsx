@@ -5,43 +5,14 @@ import Alert from '@material-ui/core/Button';
 
 
 export class Game extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            cards: [],
-            playerOne: [],
-            playerTwo: [],
-            gameOver: false,
-        }
-    }
-    // componentDidMount(){
-    //     let cardArray = dealGame();
-    //     let playerOneCards = [];
-    //     let playerTwoCards = [];
-    //     let winner = '';
-
-    //     cardArray.forEach((card, index) => {
-    //         if (index <= 25){
-    //             playerOneCards.push(card)
-    //             // console.log(index)
-    //         }
-    //         else {
-    //             playerTwoCards.push(card)
-    //         }
-    //     });
-
-    //     if (playerOneCards[0] < playerTwoCards[0]){
-    //         winner = 'Player Two'
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         cards: [],
+    //         playerOne: [],
+    //         playerTwo: [],
+    //         gameOver: false,
     //     }
-    //     else {
-    //         winner = 'Player One'
-    //     }
-    //     this.setState({
-    //         cards: cardArray,
-    //         playerOne: playerOneCards,
-    //         playerTwo: playerTwoCards,
-    //         winner: winner
-    //     })
     // }
 
     makeWar(card){
@@ -137,41 +108,6 @@ else if (winner === 'Player Two') {
         alert('Player Two won the war')
     } 
 };
-
- //when user clicks next hand
-    //determines winner of previous hand and pushes cards to respective winner
-    // playGame(p1Card, p2Card) {
-    //     let winner = '';
-    //     let playerOne = this.state.playerOne.slice()
-    //     let playerTwo = this.state.playerTwo.slice()
-        
-    //     if (p1Card.value < p2Card.value) {
-    //         winner = 'Player Two';
-    //     } else if (p1Card.value > p2Card.value) {
-    //         winner = 'Player One';
-    //     } else {
-    //         this.makeWar(0)
-    //     }
-    //     if (winner === 'Player One') {
-    //         var p2Removed = playerTwo.shift();
-    //         var p1Removed = playerOne.shift();
-    //         playerOne.push(p2Removed)
-    //         playerTwo.push(p1Removed)
-    //         this.setState({
-    //             playerOne: playerOne,
-    //             playerTwo: playerTwo
-    //         })
-    //     } else if (winner === 'Player Two') {
-    //         var p1Removed = playerOne.shift();
-    //         var p2Removed = playerTwo.shift();
-    //         playerTwo.push(p1Removed)
-    //         playerOne.push(p2Removed)
-    //         this.setState({
-    //             playerOne: playerOne,
-    //             playerTwo: playerTwo
-    //         })
-    //     }
-    // }
 
     render() {
         if (this.state.playerOne.length === 0) {
