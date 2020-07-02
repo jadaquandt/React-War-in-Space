@@ -35,12 +35,12 @@ export class Table extends Component {
                         <div>Player One</div>
                         {/* <div>Cards remaining: {this.state.p1Deck.length}</div> */}
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
-                        <Button onClick={() => {this.props.playCard()}} variant="contained" color="primary">
-                        Play Card
-                        </Button>
                     </div>
                 <div className='playArea'>
-
+                        <p>The winner is: {this.props.winner}</p>
+                <Button onClick={() => {this.props.playCard()}} variant="contained" color="primary">
+                        Play Cards
+                        </Button>
                 </div>
                     <div className='playerTwo'>
                         <div id='playerTwoCard'>PLAYER TWO CARD GOES HERE</div>

@@ -9,11 +9,18 @@ const initialState = {
     p1Deck: [],
     p2Deck: [],
     lostCards: [],
+    wonCards: [],
     getInstructions: false,
     description: "",
 }
 
 export default function reducer (state = initialState, action) {
+    let winner = '';
+    let status = '';
+    let lostCards = [];
+    let p1Deck = state.p1Deck;
+    let p2Deck = state.p2Deck;
+
     switch (action.type) {
         case "SETUP":
             return {
@@ -22,7 +29,7 @@ export default function reducer (state = initialState, action) {
             };
         case "START_GAME":
             let playerOne = state.cards.slice(0, 26);
-            let playerTwo = state.cards.slice(26, 52);
+            let playerTwo = state.cards.slice(26);
             return {
                 ...state,
                 cards: state.cards,
@@ -34,32 +41,24 @@ export default function reducer (state = initialState, action) {
         case "PLAY_CARD":
     //when user clicks play round button
     //determines winner of hand and pushes cards to respective winner
-            let winner = '';
-            let status = '';
             let p1Card = state.p1Deck.shift();
             let p2Card = state.p2Deck.shift();
-            let p1Deck = state.p1Deck;
-            let p2Deck = state.p2Deck;
-            let lostCards = [];
-            
             if (p1Card.point < p2Card.point){
                 winner = 'Player Two';
                 status = "New Game";
-                p2Deck.push(p1Card);
-                p2Deck.push(p2Card);
-                
+                lostCards.push(p1Card, p2Card);
+                p2Deck.push(p1Card, p2Card);
             }
             else if (p1Card.point > p2Card.point) {
                 winner = 'Player One';
                 status = "New Game";
-                p1Deck.push(p1Card);
-                p1Deck.push(p2Card);
+                lostCards.push(p1Card, p2Card);
+                p1Deck.push(p1Card, p2Card);
             } else if (p1Card.point === p2Card.point) {
                 winner = "Tie";
                 status = "War"
                 lostCards.push(p1Card, p2Card)
             }
-            
             return {
                 ...state,
                 description: "CARDS HAVE BEEN PLAYED",
@@ -69,41 +68,39 @@ export default function reducer (state = initialState, action) {
                 lostCards: lostCards,
                 winner: winner,
             };
-            // case "WAR":
-            // let p1War = state.p1Deck.slice(0,3);
-            // let p2War = state.p2Deck.slice(0,3);
-            // let p1WarCard = p1War.shift();
-            // let p2WarCard = p2War.shift();
-            // let wonCards = [];
-            // let warWinner = "";
-            // let warStatus = "";
+            case "WAR":
+            let p1War = p1Deck.slice(0, 4);
+            let p2War = p2Deck.slice(0, 4);
+            let warWinner = "";
+            let warStatus = "";
+            lostCards = state.lostCards.concat(p1War, p2War)
+            p1Deck = removeWarCards(p1Deck);
+            p2Deck = removeWarCards(p2Deck);
 
-            // if (p1WarCard.point < p2WarCard.point){
-            //     warWinner = 'Player Two';
-            //     warStatus = "New Game";
-            //     wonCards.push(p1WarCard);
-            //     wonCards.push(p2WarCard);
-            // }
-            // else if (p1WarCard.point > p2WarCard.point) {
-            //     warWinner = 'Player One';
-            //     warStatus = "New Game";
-            //     wonCards.push(p1WarCard);
-            //     wonCards.push(p2WarCard);
-            // } else if (p1WarCard.point === p2WarCard.point) {
-            //     warWinner = "Tie";
-            //     warStatus = "War"
-            //     wonCards.push(p1WarCard, p2WarCard, state.lostCards)
-            // }
-            
-            // return {
-            //     ...state,
-            //     description: "War has happened",
-            //     status: warStatus,
-            //     p1Deck: p1Deck,
-            //     p2Deck: p2Deck,
-            //     lostCards: lostCards,
-            //     winner: warWinner,
-            // };
+            if (p1War[3].point < p2War[3].point){
+                warWinner = 'Player Two';
+                warStatus = "New Game";
+                //Add all cards to state
+                p2Deck = lostCards.concat(p2Deck);
+            }
+            else if (p1War[3].point > p2War[3].point) {
+                warWinner = 'Player One';
+                warStatus = "New Game";
+                 //Add all cards to state
+                p1Deck = lostCards.concat(p1Deck);
+            } else if (p1War[3].point === p2War[3].point) {
+                warWinner = "Tie";
+                warStatus = "War"
+            }   
+            return {
+                ...state,
+                description: "War has happened",
+                status: warStatus,
+                p1Deck: p1Deck,
+                p2Deck: p2Deck,
+                lostCards: lostCards,
+                winner: warWinner,
+            };
         case "GAME_INSTRUCTIONS":
             return {
                 ...state,
@@ -116,7 +113,7 @@ export default function reducer (state = initialState, action) {
 //Function to get a new deck of cards for our state
 function dealGame() {
     let suits = ['C', 'D', 'H', 'S'];
-    let points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    let points = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     let newDeck = [];
 //For loops to create new deck  
     for(var i = 0; i < suits.length; i++) {
@@ -135,3 +132,9 @@ newDeck.forEach((item, i) => {
 return newDeck;
 };
 
+function removeWarCards(arr) {
+    for ( var i = 0; i < 4; i++ ) {
+        arr.shift();
+    }
+    return arr
+}
