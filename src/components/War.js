@@ -1,3 +1,4 @@
+//--------------This component is rendered if the players are in "war"-----------
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';

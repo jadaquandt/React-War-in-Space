@@ -8,8 +8,10 @@ const initialState = {
     winner: null,
     p1Deck: [],
     p2Deck: [],
+    p1Card: "",
+    p2Card: "",
     lostCards: [],
-    wonCards: [],
+
     getInstructions: false,
     description: "",
 }
@@ -39,8 +41,8 @@ export default function reducer (state = initialState, action) {
                 description: "game is loaded",
             };
         case "PLAY_CARD":
-    //when user clicks play round button
-    //determines winner of hand and pushes cards to respective winner
+    //when user clicks play cards button
+    //determines winner of hand and pushes cards to respective winner or war
             let p1Card = state.p1Deck.shift();
             let p2Card = state.p2Deck.shift();
             if (p1Card.point < p2Card.point){
@@ -65,18 +67,23 @@ export default function reducer (state = initialState, action) {
                 status: status,
                 p1Deck: p1Deck,
                 p2Deck: p2Deck,
+                p1Card: p1Card,
+                p2Card: p2Card,
                 lostCards: lostCards,
                 winner: winner,
             };
             case "WAR":
+            //Gets cards for each player to "war"
             let p1War = p1Deck.slice(0, 4);
             let p2War = p2Deck.slice(0, 4);
             let warWinner = "";
             let warStatus = "";
-            lostCards = state.lostCards.concat(p1War, p2War)
+            //Removes cards from state
             p1Deck = removeWarCards(p1Deck);
             p2Deck = removeWarCards(p2Deck);
-
+            //Puts all cards into the "pot" for the winner
+            lostCards = state.lostCards.concat(p1War, p2War)
+            //War below
             if (p1War[3].point < p2War[3].point){
                 warWinner = 'Player Two';
                 warStatus = "New Game";

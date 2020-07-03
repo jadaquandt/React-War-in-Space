@@ -1,28 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Table.css'; 
-// import Card from './Card';
+import Card from './Card';
 // import Instructions from './Instructions';
 import Button from '@material-ui/core/Button';
 import War from './War';
-// import Typography from '@material-ui/core/Typography';
+// import { Typography } from '@material-ui/core';
  
 export class Table extends Component {
-   
+
     render() {
-        // console.log(this.state.p1Deck);
-        // let playerOneDeck = this.props.p1Deck.map((card) => {
-        //     return <div><Card key={this.props.p1Deck.index} {...card.shift()} /> </div>
-        // })
-        // let playerTwoDeck = this.props.p2Deck.map((card) => {
-        //     return <div><Card key={this.props.p1Deck.index} {...card.shift()} /> </div>
-        // });
-//App beginning
         if (this.props.status === "Setup") {
             return(
                 <div style= {{textAlign: 'center'}}>
-                <h1>Want to play War?</h1>
-                <Button onClick={this.props.startGame} variant="contained" color="primary">START A NEW GAME</Button>
+                {/* <Typography variant="h3" display="block">Want to play War?</Typography> */}
+                <div className="neons"><h1>War <span id="title">(in Space)</span></h1></div>
+                <Button onClick={this.props.startGame} variant="contained" color="primary">Start a new game</Button>
                 </div>
             )
 //Once user clicks "New Game" button
@@ -31,9 +24,9 @@ export class Table extends Component {
                 <div style= {{textAlign: 'center'}}>
             <div className='table-top'>
                     <div className='playerOne'>
-                    <div id='playerOneCard'>PLAYER ONE CARD GOES HERE</div>
+                        {this.props.p1Card.point}{this.props.p1Card.suit}
+                        <Card props={this.props.p1Card}/>
                         <div>Player One</div>
-                        {/* <div>Cards remaining: {this.state.p1Deck.length}</div> */}
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
                     </div>
                 <div className='playArea'>
@@ -43,13 +36,10 @@ export class Table extends Component {
                         </Button>
                 </div>
                     <div className='playerTwo'>
-                        <div id='playerTwoCard'>PLAYER TWO CARD GOES HERE</div>
+                    {this.props.p2Card.point}{this.props.p2Card.suit}
+                    {/* <Card point={this.props.p2Deck[0].point} suit={this.props.p2Deck[0].suit}/> */}
                         <div>Player Two</div>
-                        {/* <div>Cards remaining: {this.state.p2Deck.length}</div> */}
                         <div>Cards remaining: {this.props.p2Deck.length}</div>
-                        {/* <Button onClick={() => {this.playerTwoPlay()}} variant="contained" color="primary">
-                        Play Card
-                        </Button> */}
                     </div>
             </div >
             </div>
@@ -58,7 +48,6 @@ export class Table extends Component {
             return(
                 <div>
                     <War />
-                    <h1>Time for war!</h1>
                 </div>
             )
         }
