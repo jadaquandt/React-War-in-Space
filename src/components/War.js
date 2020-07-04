@@ -24,11 +24,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setUp: () => {dispatch({type: 'SETUP'})},
-        startGame: () => {dispatch({type: 'START_GAME'})},
-        playCard: () => {dispatch({type: 'PLAY_CARD'})},
         isWar: () => {dispatch({type: 'WAR'})},
-        howToPlay: () => {dispatch({type: 'GAME_INSTRUCTIONS'})},
     }
 }
 

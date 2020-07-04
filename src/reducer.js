@@ -42,18 +42,18 @@ export default function reducer (state = initialState, action) {
             };
         case "PLAY_CARD":
     //when user clicks play cards button
-    //determines winner of hand and pushes cards to respective winner or war
+    //determines winner of hand and pushes cards to respective winner or to war
             let p1Card = state.p1Deck.shift();
             let p2Card = state.p2Deck.shift();
             if (p1Card.point < p2Card.point){
                 winner = 'Player Two';
-                status = "New Game";
+                status = "In Progress";
                 lostCards.push(p1Card, p2Card);
                 p2Deck.push(p1Card, p2Card);
             }
             else if (p1Card.point > p2Card.point) {
                 winner = 'Player One';
-                status = "New Game";
+                status = "In Progress";
                 lostCards.push(p1Card, p2Card);
                 p1Deck.push(p1Card, p2Card);
             } else if (p1Card.point === p2Card.point) {
@@ -63,7 +63,7 @@ export default function reducer (state = initialState, action) {
             }
             return {
                 ...state,
-                description: "CARDS HAVE BEEN PLAYED",
+                description: "Cards have been played",
                 status: status,
                 p1Deck: p1Deck,
                 p2Deck: p2Deck,
@@ -86,13 +86,13 @@ export default function reducer (state = initialState, action) {
             //War below
             if (p1War[3].point < p2War[3].point){
                 warWinner = 'Player Two';
-                warStatus = "New Game";
+                warStatus = "In Progress";
                 //Add all cards to state
                 p2Deck = lostCards.concat(p2Deck);
             }
             else if (p1War[3].point > p2War[3].point) {
                 warWinner = 'Player One';
-                warStatus = "New Game";
+                warStatus = "In Progress";
                  //Add all cards to state
                 p1Deck = lostCards.concat(p1Deck);
             } else if (p1War[3].point === p2War[3].point) {
@@ -138,7 +138,7 @@ newDeck.forEach((item, i) => {
     
 return newDeck;
 };
-
+//Function to shift off first 4 cards to play war
 function removeWarCards(arr) {
     for ( var i = 0; i < 4; i++ ) {
         arr.shift();

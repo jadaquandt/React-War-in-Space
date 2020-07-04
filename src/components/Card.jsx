@@ -5,15 +5,12 @@ import React, { Component } from 'react';
 export class Card extends Component {
     constructor(props) {
         super(props);
-        this.point = props.point;
-        this.suit = props.suit;
-
+            this.point = props.point;
+            this.suit = props.suit;
         this.state = {
-            message: 'Your Card:'
+            message: 'Your Card is:'
         }
-    
     }
-
     render() {
         let imgUrl = './cards/' + this.point + this.suit + '.png'
         return (

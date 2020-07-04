@@ -4,10 +4,9 @@ export class Title extends Component {
     render() {
         return (
             <div>
-                <div className="neons"><h1>War <span className="title">(in Space)</span></h1></div>
+                <h1>War <span className="title">(in Space)</span></h1>
             </div>
         )
     }
 }
-
 export default Title
