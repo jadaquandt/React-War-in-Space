@@ -113,6 +113,11 @@ export default function reducer (state = initialState, action) {
                 ...state,
                 getInstructions: true,
             };
+        case "END_GAME":
+            return {
+                ...state,
+            gameOver: true,
+                };
         default: return state;
     }
 }

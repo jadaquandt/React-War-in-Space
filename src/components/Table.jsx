@@ -24,10 +24,8 @@ export class Table extends Component {
                 <div style= {{textAlign: 'center'}}>
             <div className='table-top'>
                     <div className='playerOne'>
-                   {this.props.p1Card.point}{this.props.p1Card.suit}
                     <br></br> 
                     <img src="/cards/astronaut_back.png" alt="Playing Card"/>
-                        {/* <Card {...this.props.p1Card}/> */}
                         <div>Player One</div>
                         <img src="/astronaut.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
@@ -39,10 +37,7 @@ export class Table extends Component {
                         </Button>
                 </div>
                     <div className='playerTwo'>
-                    {this.props.p2Card.point}{this.props.p2Card.suit}
-                    <br></br>
                     <img src="/cards/alien_back.png" alt="Playing Card"/>
-                    {/* <Card point={this.props.p2Deck[0].point} suit={this.props.p2Deck[0].suit}/> */}
                         <div>Player Two</div>
                         <img src="/alien.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p2Deck.length}</div>
@@ -55,9 +50,7 @@ export class Table extends Component {
                 <div style= {{textAlign: 'center'}}>
             <div className='table-top'>
                     <div className='playerOne'>
-                   {this.props.p1Card.point}{this.props.p1Card.suit}
-                    <br></br> 
-                        <Card {...this.props.p1Card}/>
+                    <Card player={1} />
                         <div>Player One</div>
                         <img src="/astronaut.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
@@ -69,8 +62,6 @@ export class Table extends Component {
                         </Button>
                 </div>
                     <div className='playerTwo'>
-                    {this.props.p2Card.point}{this.props.p2Card.suit}
-                    <br></br>
                     <Card {...this.props.p2Card}/>
                         <div>Player Two</div>
                         <img src="/alien.png" alt="Playing Card" className="playerImg"/>
@@ -87,7 +78,7 @@ export class Table extends Component {
                     <div className='playerOne'>
                    {this.props.p1Card.point}{this.props.p1Card.suit}
                     <br></br> 
-                        <Card {...this.props.p1Card}/>
+                    <Card player={2} />
                         <div>Player One</div>
                         <img src="/astronaut.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
