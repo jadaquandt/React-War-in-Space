@@ -5,7 +5,7 @@ import Card from './Card';
 import War from './War';
 import Title from './Title';
 import Instructions from './Instructions';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 
 export class Table extends Component {
 
@@ -31,19 +31,19 @@ export class Table extends Component {
             <div className='table-top'>
                     <div className='playerOne'>
                     <img src="/cards/astronaut_back.png" alt="Playing Card"/>
-                        <div>Player One</div>
+                        <div style= {{fontWeight: 'bold'}}>Player One</div>
                         <img src="/astronaut.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
                     </div>
                 <div className='playArea'>
-                        <h2>Click to begin round!</h2>
+                        <h2 id="helperText">Click to begin round!</h2>
                 <Button onClick={() => {this.props.playCard()}} variant="contained" color="primary">
                         Play Cards
                         </Button>
                 </div>
                     <div className='playerTwo'>
                     <img src="/cards/alien_back.png" alt="Playing Card"/>
-                        <div>Player Two</div>
+                        <div style= {{fontWeight: 'bold'}}>Player Two</div>
                         <img src="/alien.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p2Deck.length}</div>
                     </div>
@@ -57,19 +57,19 @@ export class Table extends Component {
             <div className='table-top'>
                     <div className='playerOne'>
                     <Card player={1} />
-                        <div>Player One</div>
+                        <div style= {{fontWeight: 'bold'}}>Player One</div>
                         <img src="/astronaut.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
                     </div>
                 <div className='playArea'>
-                        <h2>The winner is <span className="makeItGlow">{this.props.winner}</span></h2>
+                        <h2 id="helperText">The winner is <span className="makeItGlowFaster">{this.props.winner}</span></h2>
                 <Button onClick={() => {this.props.playCard()}} variant="contained" color="primary">
                         Play Cards
                         </Button>
                 </div>
                     <div className='playerTwo'>
                     <Card {...this.props.p2Card}/>
-                        <div>Player Two</div>
+                        <div style= {{fontWeight: 'bold'}}>Player Two</div>
                         <img src="/alien.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p2Deck.length}</div>
                     </div>
@@ -83,9 +83,8 @@ export class Table extends Component {
                     <div style= {{textAlign: 'center'}}>
             <div className='table-top'>
                     <div className='playerOne'>
-                    <br></br> 
                     <Card player={1} />
-                        <div>Player One</div>
+                        <div style= {{fontWeight: 'bold'}}>Player One</div>
                         <img src="/astronaut.png" alt="Astronaut" className="playerImg"/>
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
                     </div>
@@ -93,9 +92,8 @@ export class Table extends Component {
                 <War />
                 </div>
                     <div className='playerTwo'>
-                    <br></br>
                     <Card player={2} />
-                        <div>Player Two</div>
+                        <div style= {{fontWeight: 'bold'}}>Player Two</div>
                         <img src="/alien.png" alt="Alien" className="playerImg"/>
                         <div>Cards remaining: {this.props.p2Deck.length}</div>
                     </div>
@@ -107,9 +105,12 @@ export class Table extends Component {
             return(
             <div style= {{textAlign: 'center'}}>
             <h1 className="makeItGlow">Game Over!</h1>
-            <h2>The winner is: {this.props.winner}! Congrats!</h2>
-            <h3>Want to play again?</h3>
+            <h2 id="helperText">Congratulations to our winner: <span className="makeItGlow">{this.props.winner}</span>! </h2>
+            <h3>Thanks for playing!</h3>
+            <h3 id="helperText">Want to play again?</h3>
             <Button onClick={this.props.startGame} variant="contained" color="primary">Start a new game</Button>
+            <Typography variant="overline" display="block">This was a project created by Jada Quandt for a Full-Stack Development Bootcamp in July of 2020.</Typography>
+            <Typography variant="overline" display="block">Honestly surprised you made it this far. Well done!</Typography>
             </div> 
             )
         }

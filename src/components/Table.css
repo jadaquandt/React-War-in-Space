@@ -1,40 +1,5 @@
-.table-top{
-    height: 600px;
-    width: 900px;
-    /* background-image: url("/astronomy-atmosphere-aurora-borealis-colors-902757.jpg"); */
-    /* background-color: #000000; */
-    margin-top: 3em;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: space-around;
-}
-
 img {
     height: 300px;
-}
-
-#warTitle {
-    font-size: 18em;
-    margin-bottom: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
-}
-
-#itsWar{
-    font-size: 4em;
-}
-
-.title {
-    font-size: 50px;
-}
-
-.playerImg {
-    height:50px;
-}
-
-.playerOne, .playerTwo {
-    margin-top: 100px;
 }
 
 body {
@@ -45,10 +10,53 @@ body {
     background-image: url("/astronomy-atmosphere-aurora-borealis-colors-902757.jpg");
 }
 
+#warTitle {
+    font-size: 18em;
+    margin: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+#itsWar{
+    font-size: 4em;
+}
+
+#helperText {
+    font-size: 2.5em;
+}
+
+.table-top{
+    height: 600px;
+    width: 900px;
+    margin-top: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.playerImg {
+    height:50px;
+}
+
+.warImg {
+    justify-content: center;
+    align-self: center;
+    height: 222px;
+    width: 250px
+}
+
+.playerOne, .playerTwo {
+    margin-top: 100px;
+}
 
 .makeItGlow {
     animation: glow .8s ease-in-out infinite alternate;
     }
+
+.makeItGlowFaster {
+    animation: glow .5s ease-in-out infinite alternate;
+        }
 
 @keyframes glow {
       from {

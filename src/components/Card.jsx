@@ -1,6 +1,7 @@
 //--------------This component renders a card image-----------
 import React, { Component } from "react";
 import { connect } from "react-redux";
+//Class component to create and display card
 export class Card extends Component {
 	constructor(props) {
 		super(props);
@@ -29,7 +30,7 @@ export class Card extends Component {
 		);
 	}
 }
-// export default Card;
+
 const mapStateToProps = ({ p1Card, p2Card, description }) => {
 	return {
 		p1Card,

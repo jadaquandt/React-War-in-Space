@@ -1,3 +1,4 @@
+//---This is where my components will be rendered to keep my index.js clean
 import React from 'react';
 import Table from './Table';
 

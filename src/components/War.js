@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 export class War extends Component {
     render() {
         return (
-            <div style= {{textAlign: 'center'}}>
-                <h1 id="itsWar" className="makeItGlow">It's War!</h1>
+            <div style= {{textAlign: 'center', display: "flex", flexDirection: "column"}}>
+                <h1 id="itsWar" className="makeItGlowFaster">It's War!</h1>
+                <img src="/war.png" alt="War" className="warImg"/>
             <Button onClick={() => {this.props.isWar()}} variant="contained" color="primary">
             Click to Battle!
             </Button>
@@ -27,8 +28,6 @@ const mapDispatchToProps = (dispatch) => {
         isWar: () => {dispatch({type: 'WAR'})},
     }
 }
-
-// export default War;
 
 export default connect(mapStateToProps, mapDispatchToProps)(War);
 
