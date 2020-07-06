@@ -31,7 +31,11 @@ export default function reducer (state = initialState, action) {
             };
         case "START_GAME":
             let playerOne = state.cards.slice(0, 26);
+            //Shuffles again
+            playerOne.sort(() => Math.random() - 0.5);
             let playerTwo = state.cards.slice(26);
+            //shuffles again
+            playerTwo.sort(() => Math.random() - 0.5);
             return {
                 ...state,
                 cards: state.cards,
@@ -45,13 +49,18 @@ export default function reducer (state = initialState, action) {
     //determines winner of hand and pushes cards to respective winner or to war
             let p1Card = state.p1Deck.shift();
             let p2Card = state.p2Deck.shift();
-            if (p1Card.point < p2Card.point){
+            if (p2Deck.length === 0 ){
+                winner = "Player Two";
+                status = "Game Over";
+            } else if (p1Deck.length === 0 ){
+                winner = "Player One";
+                status = "Game Over";
+            } else if (p1Card.point < p2Card.point){
                 winner = 'Player Two';
                 status = "In Progress";
                 lostCards.push(p1Card, p2Card);
                 p2Deck.push(p1Card, p2Card);
-            }
-            else if (p1Card.point > p2Card.point) {
+            } else if (p1Card.point > p2Card.point) {
                 winner = 'Player One';
                 status = "In Progress";
                 lostCards.push(p1Card, p2Card);
@@ -60,7 +69,7 @@ export default function reducer (state = initialState, action) {
                 winner = "Tie";
                 status = "War"
                 lostCards.push(p1Card, p2Card)
-            }
+            } 
             return {
                 ...state,
                 description: "Cards have been played",
@@ -76,6 +85,8 @@ export default function reducer (state = initialState, action) {
             //Gets cards for each player to "war"
             let p1War = p1Deck.slice(0, 4);
             let p2War = p2Deck.slice(0, 4);
+            let p1WarCard = p1War[3];
+            let p2WarCard = p2War[3];
             let warWinner = "";
             let warStatus = "";
             //Removes cards from state
@@ -84,39 +95,46 @@ export default function reducer (state = initialState, action) {
             //Puts all cards into the "pot" for the winner
             lostCards = state.lostCards.concat(p1War, p2War)
             //War below
-            if (p1War[3].point < p2War[3].point){
+            if (p1Deck.length === 0 ){
+                winner = "Player Two";
+                status = "Game Over";
+            } else if (p2Deck.length === 0 ){
+                winner = "Player One";
+                status = "Game Over";
+            } else if (p1WarCard.point < p2WarCard.point){
                 warWinner = 'Player Two';
                 warStatus = "In Progress";
                 //Add all cards to state
                 p2Deck = lostCards.concat(p2Deck);
-            }
-            else if (p1War[3].point > p2War[3].point) {
+            } else if (p1WarCard.point > p2WarCard.point) {
                 warWinner = 'Player One';
                 warStatus = "In Progress";
                  //Add all cards to state
                 p1Deck = lostCards.concat(p1Deck);
-            } else if (p1War[3].point === p2War[3].point) {
+            } else if (p1WarCard.point === p2WarCard.point) {
                 warWinner = "Tie";
                 warStatus = "War"
-            }   
+            } 
             return {
                 ...state,
                 description: "War has happened",
                 status: warStatus,
                 p1Deck: p1Deck,
                 p2Deck: p2Deck,
+                p1Card: p1WarCard,
+                p2Card: p2WarCard,
                 lostCards: lostCards,
                 winner: warWinner,
             };
         case "GAME_INSTRUCTIONS":
             return {
                 ...state,
-                getInstructions: true,
+                status: "Get Instructions",
             };
         case "END_GAME":
             return {
                 ...state,
-            gameOver: true,
+            status: "Game Over",
                 };
         default: return state;
     }

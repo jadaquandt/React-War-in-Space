@@ -1,6 +1,6 @@
 .table-top{
-    height: 500px;
-    width: 800px;
+    height: 600px;
+    width: 900px;
     background-image: url("/astronomy-atmosphere-aurora-borealis-colors-902757.jpg");
     background-color: #477148;
     margin-left: auto;
@@ -10,7 +10,11 @@
 }
 
 img {
-    height: 200px;
+    height: 300px;
+}
+
+.title {
+    font-size: 50px;
 }
 
 .playerImg {

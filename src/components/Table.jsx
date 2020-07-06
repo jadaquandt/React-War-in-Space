@@ -6,7 +6,6 @@ import Card from './Card';
 import War from './War';
 import Title from './Title';
 import { Button } from '@material-ui/core';
-// import alienCard from "/cards/astronaut_back.png";
  
 export class Table extends Component {
 
@@ -16,6 +15,7 @@ export class Table extends Component {
                 <div style= {{textAlign: 'center'}}>
                 <Title/>
                 <Button onClick={this.props.startGame} variant="contained" color="primary">Start a new game</Button>
+                {/* <Button onClick={this.props.} variant="contained" color="primary">How to play</Button> */}
                 </div>
             )
 //Once user clicks "New Game" button
@@ -24,14 +24,13 @@ export class Table extends Component {
                 <div style= {{textAlign: 'center'}}>
             <div className='table-top'>
                     <div className='playerOne'>
-                    <br></br> 
                     <img src="/cards/astronaut_back.png" alt="Playing Card"/>
                         <div>Player One</div>
                         <img src="/astronaut.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
                     </div>
                 <div className='playArea'>
-                        <p>Click to begin round!</p>
+                        <h2>Click to begin round!</h2>
                 <Button onClick={() => {this.props.playCard()}} variant="contained" color="primary">
                         Play Cards
                         </Button>
@@ -56,7 +55,7 @@ export class Table extends Component {
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
                     </div>
                 <div className='playArea'>
-                        <p>The winner is: {this.props.winner}</p>
+                        <h2>The winner is: {this.props.winner}</h2>
                 <Button onClick={() => {this.props.playCard()}} variant="contained" color="primary">
                         Play Cards
                         </Button>
@@ -76,9 +75,8 @@ export class Table extends Component {
                     <div style= {{textAlign: 'center'}}>
             <div className='table-top'>
                     <div className='playerOne'>
-                   {this.props.p1Card.point}{this.props.p1Card.suit}
                     <br></br> 
-                    <Card player={2} />
+                    <Card player={1} />
                         <div>Player One</div>
                         <img src="/astronaut.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p1Deck.length}</div>
@@ -87,9 +85,8 @@ export class Table extends Component {
                 <War />
                 </div>
                     <div className='playerTwo'>
-                    {this.props.p2Card.point}{this.props.p2Card.suit}
                     <br></br>
-                    <Card {...this.props.p2Card}/>
+                    <Card player={2} />
                         <div>Player Two</div>
                         <img src="/alien.png" alt="Playing Card" className="playerImg"/>
                         <div>Cards remaining: {this.props.p2Deck.length}</div>
@@ -98,10 +95,20 @@ export class Table extends Component {
             </div>
                 </div>
             )
+        } else if (this.props.status === "Game Over") {
+            return(
+            <div style= {{textAlign: 'center'}}>
+            <h1>Game Over!</h1>
+            <h2>The winner is: {this.props.winner}! Congrats!</h2>
+            <h3>Want to play again?</h3>
+            <Button onClick={this.props.startGame} variant="contained" color="primary">Start a new game</Button>
+            </div> 
+            )
         }
         return (
             <div style= {{textAlign: 'center'}}>
-            <p>This is the last else condition</p>
+            <p>Uh oh! Something went wrong with the app!</p>
+            <Button onClick={this.props.startGame} variant="contained" color="primary">Start a new game</Button>
             </div>
         )
     }
