@@ -4,13 +4,14 @@ import './Instructions.css';
 import { 
     List, 
     ListItemText, 
-    Typography 
+    Typography,
+    Button
 } from '@material-ui/core';
 
 export class Instructions extends Component {
     render() {
         return (
-            <div style= {{textAlign: 'center'}}>
+            <div className="instructionsContainer" style= {{textAlign: 'center'}}>
                 <Typography variant="h4" display="block">How to Play War</Typography>
                 <Typography variant="overline" display="block">Yeah! That card game from childhood, but the React.js version</Typography>
                 <Typography variant="overline" display="block"><strong>Goal:</strong> Be the first player to win all 52 cards</Typography>
@@ -26,6 +27,8 @@ export class Instructions extends Component {
                     <ListItemText><Typography variant="overline" display="block">For <strong>War</strong>, each player plays 3 cards face down, then flips the forth to see who has the higher card. The higher card gets the whole stack of 10 cards.</Typography></ListItemText>
                     <ListItemText><Typography variant="overline" display="block">The game ends when one player has won all the cards.</Typography></ListItemText>
                 </List>
+                <Typography variant="h5" display="block"><strong>Ready to play?</strong></Typography>
+                <a href="/home" style={{ textDecoration: 'none'}}><Button variant="contained" color="primary">Start a new game!</Button></a>
             </div>
         )
     }

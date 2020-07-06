@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 export class Title extends Component {
     render() {
         return (
-            <div>
-                <h1>War <span className="title">(in Space)</span></h1>
+            <div className="titleDiv">
+                <div className="makeItGlow" id="warTitle">WAR </div>
             </div>
         )
     }

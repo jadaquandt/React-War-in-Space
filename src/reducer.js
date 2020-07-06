@@ -31,11 +31,7 @@ export default function reducer (state = initialState, action) {
             };
         case "START_GAME":
             let playerOne = state.cards.slice(0, 26);
-            //Shuffles again
-            playerOne.sort(() => Math.random() - 0.5);
             let playerTwo = state.cards.slice(26);
-            //shuffles again
-            playerTwo.sort(() => Math.random() - 0.5);
             return {
                 ...state,
                 cards: state.cards,
@@ -49,10 +45,11 @@ export default function reducer (state = initialState, action) {
     //determines winner of hand and pushes cards to respective winner or to war
             let p1Card = state.p1Deck.shift();
             let p2Card = state.p2Deck.shift();
-            if (p2Deck.length === 0 ){
+            
+            if (p1Deck.length < 2){
                 winner = "Player Two";
                 status = "Game Over";
-            } else if (p1Deck.length === 0 ){
+            } else if (p2Deck.length < 2){
                 winner = "Player One";
                 status = "Game Over";
             } else if (p1Card.point < p2Card.point){
@@ -95,22 +92,23 @@ export default function reducer (state = initialState, action) {
             //Puts all cards into the "pot" for the winner
             lostCards = state.lostCards.concat(p1War, p2War)
             //War below
-            if (p1Deck.length === 0 ){
+            if (p1Deck.length < 2){
                 winner = "Player Two";
                 status = "Game Over";
-            } else if (p2Deck.length === 0 ){
+            } else if (p2Deck.length < 2){
                 winner = "Player One";
                 status = "Game Over";
-            } else if (p1WarCard.point < p2WarCard.point){
+            } 
+            else if (p1WarCard.point < p2WarCard.point){
                 warWinner = 'Player Two';
                 warStatus = "In Progress";
                 //Add all cards to state
-                p2Deck = lostCards.concat(p2Deck);
+                p2Deck = p2Deck.concat(lostCards);
             } else if (p1WarCard.point > p2WarCard.point) {
                 warWinner = 'Player One';
                 warStatus = "In Progress";
                  //Add all cards to state
-                p1Deck = lostCards.concat(p1Deck);
+                p1Deck = p1Deck.concat(lostCards);
             } else if (p1WarCard.point === p2WarCard.point) {
                 warWinner = "Tie";
                 warStatus = "War"
@@ -152,7 +150,7 @@ function dealGame() {
           newDeck.push(card);
         }
       }
-//Shuffle Deck array using sort
+//Shuffle Deck array twice using sort
     newDeck.sort(() => Math.random() - 0.5);
 //Giving it an id to help with the map function later
 newDeck.forEach((item, i) => {

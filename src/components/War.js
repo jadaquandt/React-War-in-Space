@@ -7,7 +7,7 @@ export class War extends Component {
     render() {
         return (
             <div style= {{textAlign: 'center'}}>
-                <h1>It's War!</h1>
+                <h1 id="itsWar" className="makeItGlow">It's War!</h1>
             <Button onClick={() => {this.props.isWar()}} variant="contained" color="primary">
             Click to Battle!
             </Button>

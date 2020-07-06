@@ -1,3 +1,7 @@
+## War (in Space) React.js Project
+
+-Created by Jada Quandt for a React.js project as part of the Full Stack Digitalcrafts
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
