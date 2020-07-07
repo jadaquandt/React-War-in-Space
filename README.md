@@ -5,9 +5,10 @@ This project was created as a React.js project for a Full Stack Development Boot
 	
 ## Technologies
 Project is created with:
-* React.js
+* Create React App
+* React-Redux
+* Material-UI
 * Vercel
-* Ament library version: 999
 
 #### List of resources used:
 * [Free Adventure Icons](https://dribbble.com/shots/2408773-Adventure-Icons-Freebie) created by Jakob Scott
