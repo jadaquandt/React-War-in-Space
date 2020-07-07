@@ -7,9 +7,9 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 //Leaving store subscription for app demo for class, will remove after presentation
-store.subscribe(() => {
-  console.log("Store changed!", store.getState())
-})
+// store.subscribe(() => {
+//   console.log("Store changed!", store.getState())
+// })
 //Default dispatch
 store.dispatch({ type: "SETUP" })
 
