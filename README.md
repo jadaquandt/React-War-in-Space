@@ -1,6 +1,7 @@
 ## War React.js Project
 
-![screenshot](public/app_screenshot_1.png)
+![screenshot1](public/app_screenshot_1.png)
+![screenshot2](public/app_screenshot_2.png)
 
 ## General info
 This project was created as a React.js project for a Full Stack Development Bootcamp at Digitalcrafts Atlanta in July 2020.
